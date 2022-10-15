@@ -36,6 +36,7 @@ h2{
     width: 100px;
     height: 80px;
     background-color: slateblue;
+    border-radius: 30px;
     opacity: 80%;
     color: #fff;
     display: flex;
