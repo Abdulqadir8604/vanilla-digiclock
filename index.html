@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Digital Clock</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock Design | With 12-hour/24-hour format Switcher - Html, Css & Javascript</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
-    <h2>Digital Clock</h2>
-    <div class="clock">
-        <div class="clock-face">
-            <span id="hour">00</span>
-            <span class="text">Hours</span>
+
+    <div class="digital-clock">
+        <div class="time">
+            <span class="hours">00</span>
+            <span class="dots">:</span>
+            <span class="minutes">00</span>
+            <span class="dots">:</span>
+            <span class="seconds">00</span>
+
+            <div class="right-side">
+                <span class="period">AM/PM</span>
+            </div>
         </div>
-        <div class="clock-face">
-            <span id="minute">00</span>
-            <span class="text">Minutes</span>
-        </div>
-        <div class="clock-face">
-            <span id="second">00</span>
-            <span class="text">Seconds</span>
-        </div>
-        <div class="clock-face">
-            <span id="ampm">AM</span>
-        </div>
+            <div class="calendar">
+              <span class="month-name">Sep</span>,
+              <span class="day-name">Mon</span>
+              <span class="day-number">23</span>
+              <span class="year">2312</span>
+            </div>
     </div>
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
+      

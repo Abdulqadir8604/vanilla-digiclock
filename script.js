@@ -1,7 +1,12 @@
-const hourEl = document.getElementById('hour');
-const minuteEl = document.getElementById('minute');
-const secondEl = document.getElementById('second');
-const ampmEl = document.getElementById('ampm');
+const hourEl = document.querySelector('.hours');
+const minuteEl = document.querySelector('.minutes');
+const secondEl = document.querySelector('.seconds');
+const ampmEl = document.querySelector('.period');
+
+const daysEl = document.querySelector('.day-name');
+const dateEl = document.querySelector('.day-number');
+const monthsEl = document.querySelector('.month-name');
+const yearsEl = document.querySelector('.year');
 
 function updateClock() {
     let date = new Date();
@@ -10,7 +15,7 @@ function updateClock() {
     let second = date.getSeconds();
     let ampm = 'AM';
 
-    if (hour > 12){
+    if (hour >= 12){
         hour -= 12;
         ampm = "PM";
     }
@@ -24,7 +29,19 @@ function updateClock() {
     secondEl.innerText = second;
     ampmEl.innerText = ampm;
 
-    setTimeout(updateClock, 1000);
+    setInterval(updateClock, 1000);
 }
+
+var date = new Date();
+var dayNumber = date.getDate();
+var year = date.getFullYear();
+var dayName = date.toLocaleString('default', { weekday: 'long' });
+var monthName = date.toLocaleString('default', { month: 'long' });
+
+daysEl.innerText = dayName;
+dateEl.innerText = dayNumber;
+monthsEl.innerText = monthName;
+yearsEl.innerText = year;
+
 
 updateClock();
