@@ -8,9 +8,50 @@ const dateEl = document.querySelector('.day-number');
 const monthsEl = document.querySelector('.month-name');
 const yearsEl = document.querySelector('.year');
 
-const formatRadios = document.querySelectorAll('input[name="format"]');
+const formatSwitchBtn = document.querySelector('.format-switch-btn');
 
-let twelveHourFormat = true;
+const dotMenuBtn = document.querySelector('.dot-menu-btn');
+const dotMenu = document.querySelector('.dot-menu');
+
+
+
+dotMenuBtn.addEventListener('click', () => {
+    dotMenu.classList.toggle('active');
+});
+
+function showPopUp(){
+    localStorage.setItem('alerted', 'true');
+    alert('The Clock has been configured for 24-hour format, you can change it to 12-hour' +
+        ' format by clicking on the button on the top right corner of the clock.');
+}
+
+function checkForPopUp() {
+    if (localStorage.getItem('alerted') !== 'true') {
+        showPopUp();
+    }
+}
+
+checkForPopUp();
+
+document.addEventListener('click', (e) => {
+    if (e.target.id !== 'active-menu') {
+        dotMenu.classList.remove('active');
+    }
+});
+
+let formatValue;
+
+formatSwitchBtn.addEventListener('click', () => {
+    formatSwitchBtn.classList.toggle('active');
+    
+    formatValue = formatSwitchBtn.getAttribute('data-format');
+    
+    if (formatValue === '12') {
+        formatSwitchBtn.setAttribute('data-format', '24');
+    }else{
+        formatSwitchBtn.setAttribute('data-format', '12');
+    }
+});
 
 function updateClock() {
 
@@ -37,30 +78,27 @@ monthsEl.innerText = monthName;
 yearsEl.innerText = year;
 
 function showClock(hour, minute, second, ampm) {
-    window.onload = function() {
-        document.getElementById('twelveHourFormat').checked = true;
+    
+    if (formatValue === '12') {
+        if (hour > 12) {
+            hour = hour - 12;
+            ampm = 'PM';
+        }else if (hour === 0) {
+            hour = 12;
+            ampm = 'AM';
+        }
+    }else{
+        ampm = '';
     }
     
-    formatRadios.forEach((radio) => {
-        if (radio.checked) {
-            if (radio.value === '12') {
-                ampm = hour >= 12 ? 'PM' : 'AM';
-                hour = hour % 12 || 12;
-                hour = hour < 10 ? "0" + hour : hour;
-                minute = minute < 10 ? "0" + minute : minute;
-                second = second < 10 ? "0" + second : second;
-            } else {
-                hour = hour < 10 ? "0" + hour : hour;
-                minute = minute < 10 ? "0" + minute : minute;
-                second = second < 10 ? "0" + second : second;
-                ampm = '';
-            }
-            hourEl.innerText = hour;
-            minuteEl.innerText = minute;
-            secondEl.innerText = second;
-            ampmEl.innerText = ampm;
-        }
-    });
+    hour = hour < 10 ? '0' + hour : hour;
+    minute = minute < 10 ? '0' + minute : minute;
+    second = second < 10 ? '0' + second : second;
+    
+    hourEl.innerText = hour;
+    minuteEl.innerText = minute;
+    secondEl.innerText = second;
+    ampmEl.innerText = ampm;
 }
 
 updateClock();

@@ -10,6 +10,13 @@
 <body>
 
     <div class="digital-clock">
+        <i class="uil uil-ellipsis-v dot-menu-btn" id="active-menu"></i>
+        <ul class="dot-menu" id="active-menu">
+            <li class="menu-item" id="active-menu">
+                <span class="clock-format-text" id="active-menu">24-hour format</span>
+                <div class="format-switch-btn" id="active-menu" data-format="12"></div>
+            </li>
+        </ul>
         <div class="time">
             <span class="hours">00</span>
             <span class="dots">:</span>
@@ -25,13 +32,8 @@
               <span class="month-name">Sep</span>,
               <span class="day-name">Mon</span>
               <span class="day-number">23</span>
-              <span class="year">2312</span>
+              <span class="year">2002</span>
             </div>
-    </div>
-
-    <div class="format-radio">
-        <input type="radio" name="format" value="24" id="twentyFourHourFormat"> <label for="twentyFourHourFormat">24 Hours</label>
-        <input type="radio" name="format" value="12" id="twelveHourFormat"> <label for="twelveHourFormat">12 Hours</label>
     </div>
 
 <script src="script.js"></script>
