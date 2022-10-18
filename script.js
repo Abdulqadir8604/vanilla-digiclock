@@ -8,26 +8,19 @@ const dateEl = document.querySelector('.day-number');
 const monthsEl = document.querySelector('.month-name');
 const yearsEl = document.querySelector('.year');
 
+const formatRadios = document.querySelectorAll('input[name="format"]');
+
+let twelveHourFormat = true;
+
 function updateClock() {
+
     let date = new Date();
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
     let ampm = 'AM';
-
-    if (hour >= 12){
-        hour -= 12;
-        ampm = "PM";
-    }
-
-    hour = hour < 10 ? "0" + hour : hour;
-    minute = minute < 10 ? "0" + minute : minute;
-    second = second < 10 ? "0" + second : second;
-
-    hourEl.innerText = hour;
-    minuteEl.innerText = minute;
-    secondEl.innerText = second;
-    ampmEl.innerText = ampm;
+    
+    showClock(hour, minute, second, ampm);
 
     setInterval(updateClock, 1000);
 }
@@ -43,5 +36,31 @@ dateEl.innerText = dayNumber;
 monthsEl.innerText = monthName;
 yearsEl.innerText = year;
 
+function showClock(hour, minute, second, ampm) {
+    window.onload = function() {
+        document.getElementById('twelveHourFormat').checked = true;
+    }
+    
+    formatRadios.forEach((radio) => {
+        if (radio.checked) {
+            if (radio.value === '12') {
+                ampm = hour >= 12 ? 'PM' : 'AM';
+                hour = hour % 12 || 12;
+                hour = hour < 10 ? "0" + hour : hour;
+                minute = minute < 10 ? "0" + minute : minute;
+                second = second < 10 ? "0" + second : second;
+            } else {
+                hour = hour < 10 ? "0" + hour : hour;
+                minute = minute < 10 ? "0" + minute : minute;
+                second = second < 10 ? "0" + second : second;
+                ampm = '';
+            }
+            hourEl.innerText = hour;
+            minuteEl.innerText = minute;
+            secondEl.innerText = second;
+            ampmEl.innerText = ampm;
+        }
+    });
+}
 
 updateClock();
