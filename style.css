@@ -5,6 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    user-select: none;
 }
 
 body{
@@ -14,6 +16,7 @@ body{
     align-items: center;
     background: url("assets/bg_image.jpg") no-repeat;
     background-size: cover;
+    backdrop-filter: blur(5px);
 }
 
 .digital-clock{
@@ -21,7 +24,7 @@ body{
     background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    width: 500px;
+    width: 450px;
     padding: 20px 45px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -35,7 +38,7 @@ body{
 .digital-clock::before{
     content: '';
     position: absolute;
-    background: linear-gradient(45deg, #00ffb7, #00bbff, #ff66a6);
+    background: linear-gradient(45deg, rgba(0, 255, 183, 0.5), rgba(0, 187, 255, 0.5), rgba(255, 102, 166, 0.5));
     top: -5px;
     left: -5px;
     bottom: -5px;
@@ -229,4 +232,60 @@ body{
     background: #ff5e9a;
     box-shadow: 0 5px 25px #ff5e9a;
     transform: translateX(10px);
+}
+
+.copyright{
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.5em;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.copyright>a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px){
+    .digital-clock{
+        width: 300px;
+        height: 200px;
+    }
+    .clock{
+        width: 300px;
+        height: 300px;
+    }
+    .hours, .minutes, .seconds{
+        font-size: 50px;
+        width: 70px;
+    }
+    .dots{
+        font-size: 20px;
+    }
+    .period{
+        font-size: 15px;
+        transform: translateY(20px);
+    }
+    .calendar{
+        font-size: 15px;
+    }
+    .day-name, .day-number, .year{
+        margin-left: 5px;
+    }
+    .clock-format-text{
+        font-size: 0.7em;
+    }
+    .format-switch-btn{
+        width: 25px;
+        height: 10px;
+    }
+    .format-switch-btn::before{
+        width: 10px;
+        height: 10px;
+    }
 }
